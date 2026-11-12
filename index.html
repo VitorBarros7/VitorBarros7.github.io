@@ -528,6 +528,52 @@ body.lock { overflow: hidden; }
   .c-item > :last-child { grid-column: 2; }
 }
 
+/* Trajetória: carreira, formação e linha do tempo */
+.tl .emp { display: block; color: var(--muted); font-size: 14.5px; margin-bottom: 8px; }
+.tl-pts { margin: 0 0 10px; padding-left: 18px; color: var(--muted); font-size: 15px; display: grid; gap: 4px; }
+.tl-pts li { padding: 0; }
+.tl-pts li::before { display: none; }
+.tl .ev { display: flex; flex-wrap: wrap; gap: 6px 12px; font-family: var(--f-mono); font-size: 11.5px; color: var(--faint); }
+.tl .ev button { background: none; border: 0; padding: 0; color: var(--cyan); cursor: pointer; font: inherit; text-decoration: underline; text-decoration-color: rgba(56,189,248,.35); text-underline-offset: 3px; }
+.form-h { margin: 8px 0 16px; font-family: var(--f-mono); font-size: 12px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); }
+.tl-form li { padding-bottom: 18px; }
+.tl-form li::before { border-color: var(--violet); }
+.carreira-card { position: sticky; top: calc(var(--nav-h) + 24px); align-self: start; }
+.linha { display: flex; flex-direction: column; gap: 14px; }
+.lk { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-bottom: 6px; }
+.lk div { background: var(--bg-2); padding: 12px; display: flex; flex-direction: column; }
+.lk b { font-family: var(--f-display); font-size: 26px; font-weight: 650; line-height: 1.1; }
+.lk span { color: var(--muted); font-size: 12px; line-height: 1.3; }
+.lane { display: grid; grid-template-columns: 84px minmax(0,1fr); align-items: center; gap: 10px; }
+.ln { font-family: var(--f-mono); font-size: 10.5px; color: var(--faint); letter-spacing: .06em; text-transform: uppercase; }
+.track { position: relative; height: 34px; background: repeating-linear-gradient(90deg, rgba(167,177,196,.07) 0 1px, transparent 1px calc(100% / 13)); border-radius: 6px; }
+.bar { position: absolute; top: 3px; bottom: 3px; border: 0; border-radius: 6px; cursor: pointer; padding: 0 8px; display: flex; align-items: center; overflow: hidden; color: #fff; font-size: 11.5px; font-weight: 600; transition: transform .2s, box-shadow .2s; }
+.bar span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar:hover, .bar.on { transform: translateY(-2px); box-shadow: 0 8px 20px -8px rgba(0,0,0,.8), 0 0 0 2px var(--fg); }
+.bar.exp.e0 { background: #4B36C9; }
+.bar.exp.e1 { background: var(--violet); }
+.bar.exp.e2 { background: linear-gradient(90deg, var(--violet), var(--cyan)); }
+.bar.form { background: rgba(56,189,248,.18); color: var(--cyan); box-shadow: inset 0 0 0 1px rgba(56,189,248,.45); }
+.track.marcos { height: 22px; background: none; }
+.track.marcos::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: var(--line-2); }
+.mk { position: absolute; top: 50%; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; border: 2px solid var(--cyan); background: var(--bg); cursor: pointer; padding: 0; transition: transform .2s; }
+.mk:hover { transform: scale(1.3); background: var(--cyan); }
+.axis { position: relative; height: 16px; margin-left: 94px; font-family: var(--f-mono); font-size: 10px; color: var(--faint); }
+.axis span { position: absolute; top: 0; }
+.lt-sel { color: var(--fg); font-size: 14.5px; margin-bottom: 10px; min-height: 22px; }
+.marcos-lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.marcos-lista li { display: grid; grid-template-columns: 46px minmax(0,1fr) auto; gap: 10px; align-items: center; padding: 6px 8px; border-radius: 8px; font-size: 14px; color: var(--muted); transition: background-color .2s; }
+.marcos-lista li.on { background: var(--surface-2); color: var(--fg); }
+.marcos-lista .q { font-family: var(--f-mono); font-size: 12px; color: var(--cyan); }
+.marcos-lista .linkbtn { font-size: 13px; }
+.card .when b { color: var(--fg); font-weight: 500; }
+@media (max-width: 860px) { .carreira-card { position: static; } }
+@media (max-width: 520px) {
+  .lk { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .lane { grid-template-columns: minmax(0,1fr); gap: 4px; }
+  .axis { margin-left: 0; }
+}
+
 </style>
 
 <a class="sr-skip" href="#sobre" style="position:absolute;left:-9999px">Pular para o conteúdo</a>
@@ -538,11 +584,11 @@ body.lock { overflow: hidden; }
     <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menu"><span></span></button>
     <ul class="nav-links" id="nav-links">
       <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#trajetoria">Trajetória</a></li>
       <li><a href="#especialidades">Especialidades</a></li>
       <li><a href="#projetos">Projetos</a></li>
       <li><a href="#metodo">Método</a></li>
       <li><a href="#stack">Stack</a></li>
-      <li><a href="#trajetoria">Trajetória</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
     <a class="nav-cta" href="#contato">Vamos conversar</a>
@@ -594,6 +640,27 @@ body.lock { overflow: hidden; }
     </div>
   </section>
 
+  <section class="block" id="trajetoria" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="t"><span class="eyebrow">Trajetória</span><h2>Dez anos transformando indicadores em decisão.</h2></div>
+        <p class="lead">Do planejamento de operações ao BI e à inteligência de mercado: cada etapa somou uma camada ao que faço hoje.</p>
+      </div>
+      <div class="timeline">
+        <div>
+          <ol class="tl" id="tl"></ol>
+          <h3 class="form-h">Formação</h3>
+          <ol class="tl tl-form" id="formacao"></ol>
+        </div>
+        <div class="cal carreira-card">
+          <div class="cal-head"><h3>A carreira em uma linha</h3><span>2014 – hoje</span></div>
+          <div id="linha" class="linha"></div>
+          <div class="cal-tip" id="linha-tip"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="block" id="especialidades" style="padding-top:0">
     <div class="wrap">
       <div class="sec-head">
@@ -640,21 +707,6 @@ body.lock { overflow: hidden; }
     </div>
   </section>
 
-  <section class="block" id="trajetoria" style="padding-top:0">
-    <div class="wrap">
-      <div class="sec-head">
-        <div class="t"><span class="eyebrow">Trajetória e evolução</span><h2>Dos estudos de 2022 às ferramentas em produção.</h2></div>
-      </div>
-      <div class="timeline">
-        <ol class="tl" id="tl"></ol>
-        <div class="cal">
-          <div class="cal-head"><h3>Lançamentos por dia</h3><span id="cal-sum"></span></div>
-          <div class="cal-months" id="cal"></div>
-          <div class="cal-tip" id="cal-tip">Toque em um dia marcado para ver o que entrou no ar.</div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section class="block" id="contato" style="padding-top:0">
     <div class="wrap">
@@ -674,7 +726,7 @@ body.lock { overflow: hidden; }
   <div class="wrap">
     <a class="brand" href="#inicio"><img class="brand-logo" src="data:image/png;base64,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" alt="" width="44" height="32"><span>Vitor Barros</span></a>
     <nav aria-label="Rodapé">
-      <a href="#sobre">Sobre</a><a href="#projetos">Projetos</a><a href="#metodo">Método</a><a href="#stack">Stack</a><a href="#contato">Contato</a>
+      <a href="#sobre">Sobre</a><a href="#trajetoria">Trajetória</a><a href="#projetos">Projetos</a><a href="#metodo">Método</a><a href="#stack">Stack</a><a href="#contato">Contato</a>
     </nav>
     <small id="f-sm"></small>
   </div>
@@ -720,7 +772,7 @@ window.CONTEUDO = {
 
   /* Números do hero: só fatos medidos nos projetos. */
   destaques: [
-    { valor: '5.571', rotulo: 'municípios no mapa comercial', caso: 'territorio' },
+    { valor: '10 anos', rotulo: 'com indicadores, BI e dados em 3 empresas', ancora: 'trajetoria' },
     { valor: '28,4 mi', rotulo: 'empresas ativas no Radar', caso: 'radar' },
     { valor: '12', rotulo: 'ferramentas no hub interno', caso: 'hub' },
     { valor: '100%', rotulo: 'de aderência ao FP&A no Flash', caso: 'flash' }
@@ -728,8 +780,8 @@ window.CONTEUDO = {
 
   sobre: {
     paragrafos: [
-      'Trabalho com inteligência de mercado em uma concessionária de máquinas pesadas. O ponto de partida é sempre uma pergunta do negócio: onde estão os clientes que ainda não atendemos, quanto cada filial realmente entrega, quem deve receber cada comissão.',
-      'A partir dela eu construo o caminho inteiro: consultas SQL no data warehouse, extração e regras em Python, conferência de cada número contra a fonte oficial e uma ferramenta que as pessoas usam no dia a dia. A planilha paralela deixa de ser necessária.',
+      'Há dez anos transformo indicadores em decisão. Comecei no planejamento e controle de operações da Almaviva, ajudei a construir a cultura de dados e o BI da APM Brasil e hoje sou Especialista em Inteligência de Mercado na BAMAQ.',
+      'Sou engenheiro mecânico de formação, com formação em ciência de dados. O ponto de partida é sempre uma pergunta do negócio: onde estão os clientes que ainda não atendemos, quanto cada filial realmente entrega, quem deve receber cada comissão. A partir dela eu construo o caminho inteiro: consultas SQL no data warehouse, extração e regras em Python, conferência de cada número contra a fonte oficial e uma ferramenta que as pessoas usam no dia a dia. A planilha paralela deixa de ser necessária.',
       'Hoje uso IA generativa como par de programação. Ela acelera a construção. As regras, a validação e a responsabilidade pelo resultado continuam comigo.'
     ],
     principios: [
@@ -794,7 +846,7 @@ window.CONTEUDO = {
       id: 'radar', destaque: true,
       titulo: 'Radar de Empresas',
       resumo: 'Prospecção sobre 28 milhões de empresas ativas, montada com dados abertos.',
-      areas: ['im', 'sql', 'auto'], status: 'uso', quando: 'nov 2026', visual: 'mapa',
+      areas: ['im', 'sql', 'auto'], status: 'uso', empresa: 'BAMAQ', quando: '2026', visual: 'mapa',
       problema: 'A prospecção dependia de uma plataforma paga, cobrada por empresa consultada. O uso mais frequente era higienizar listas e encontrar contatos.',
       solucao: 'Pipeline em Python e DuckDB que baixa os dados abertos da Receita Federal todo mês, monta uma base em Parquet do Brasil inteiro e serve um aplicativo com filtros, mapa, ficha do CNPJ com sócios e enriquecimento de planilhas.',
       aplicacao: 'Listas de prospecção por atividade, região e porte; higienização de carteiras; leitura de quem financiou máquinas e caminhões.',
@@ -829,7 +881,7 @@ window.CONTEUDO = {
       id: 'flash', destaque: true,
       titulo: 'Flash de Resultados',
       resumo: 'DRE gerencial de 29 filiais em uma tela, com a régua do forecast.',
-      areas: ['bi', 'auto'], status: 'producao', quando: 'nov 2026', visual: 'dre',
+      areas: ['bi', 'auto'], status: 'producao', empresa: 'BAMAQ', quando: '2026', visual: 'dre',
       problema: 'Acompanhar o resultado por filial exigia navegar em relatórios extensos do Power BI e cruzar com planilhas do FP&A para calcular indicadores como a absorção.',
       solucao: 'Extração automatizada do modelo semântico do Power BI com o login do próprio usuário, regras do FP&A reproduzidas em Python e uma aplicação com DRE, comparação com forecast, budget e ano anterior, e recorte por área feito no servidor.',
       aplicacao: 'Diretoria acompanha todas as filiais; cada gerente de área passa a ver só a sua.',
@@ -863,7 +915,7 @@ window.CONTEUDO = {
       id: 'cockpit', destaque: true,
       titulo: 'Cockpit Diário de Vendas',
       resumo: 'A reunião diária do time de máquinas guiada por um painel que se atualiza sozinho.',
-      areas: ['bi', 'sql', 'auto'], status: 'producao', quando: 'out 2026', visual: 'cockpit',
+      areas: ['bi', 'sql', 'auto'], status: 'producao', empresa: 'BAMAQ', quando: '2026', visual: 'cockpit',
       problema: 'A reunião diária acompanhava os negócios com previsão de faturamento no mês, mas os números vinham de painéis diferentes e o que era combinado se perdia.',
       solucao: 'Script Python que consulta o data warehouse (CRM e ERP) com as mesmas regras dos BIs oficiais e gera um painel atualizado de hora em hora, com metas, funil, visitas e atas da reunião salvas pelo próprio painel.',
       aplicacao: 'Gerentes e vendedores abrem o mesmo painel na reunião; a ata fica registrada com o que foi decidido para cada negócio.',
@@ -896,7 +948,7 @@ window.CONTEUDO = {
       id: 'territorio', destaque: true,
       titulo: 'Mapa Comercial e Territórios',
       resumo: '5.571 municípios em camadas para decidir onde atuar e quem atende cada cidade.',
-      areas: ['im', 'bi'], status: 'producao', quando: 'out 2026', visual: 'mapa2',
+      areas: ['im', 'bi'], status: 'producao', empresa: 'BAMAQ', quando: '2026', visual: 'mapa2',
       problema: 'O território comercial era analisado em uma ferramenta paga de geomarketing e em planilhas de mapeamento difíceis de consultar.',
       solucao: 'Mapa web com a malha dos municípios e camadas de parque de máquinas, visitas do CRM e dados socioeconômicos, um módulo de análises prontas e uma consulta rápida de quem atende cada cidade para CRM, pré-vendas e serviços.',
       aplicacao: 'Planejamento de rotas e carteiras, cobertura de visitas e divisão de regiões entre vendedores e consultores.',
@@ -929,7 +981,7 @@ window.CONTEUDO = {
       id: 'comissao',
       titulo: 'Comissão com Evidências',
       resumo: 'Cálculo de comissão de pré-vendas e licitações com a prova de cada negócio.',
-      areas: ['sql', 'auto', 'bi'], status: 'producao', quando: 'nov 2026', visual: 'tabela',
+      areas: ['sql', 'auto', 'bi'], status: 'producao', empresa: 'BAMAQ', quando: '2026', visual: 'tabela',
       problema: 'A comissão era calculada com um BI e várias planilhas, e conferir de onde vinha cada valor tomava tempo de todos.',
       solucao: 'Gerador em Python que cruza CRM, ERP e a API da ferramenta de cadência de vendas, aplica a política de cada negócio e publica uma aplicação com visão restrita por pessoa e o pacote da controladoria em Excel.',
       aplicacao: 'Cada profissional acompanha a própria apuração; a controladoria recebe o arquivo no modelo que já usa.',
@@ -962,7 +1014,7 @@ window.CONTEUDO = {
       id: 'parque',
       titulo: 'Parque de Máquinas e Cadastro',
       resumo: 'Máquinas dos clientes integradas ao CRM de serviços, com auditoria de cidades contra o IBGE.',
-      areas: ['sql', 'auto', 'im'], status: 'producao', quando: 'nov 2026', visual: 'auditoria', visualReal: true,
+      areas: ['sql', 'auto', 'im'], status: 'producao', empresa: 'BAMAQ', quando: '2026', visual: 'auditoria', visualReal: true,
       problema: 'O parque de máquinas vinha de um arquivo manual, e o cadastro de cidades do CRM de serviços tinha duplicidades e códigos IBGE faltando.',
       solucao: 'Integração com a Web API do Dynamics 365, ordens de serviço do ERP ligadas pelo chassi, painel de território e equilíbrio de consultores, e uma auditoria automática das cidades com simulação, aplicação controlada e log para desfazer.',
       aplicacao: 'Gerência de serviços e coordenações acompanham parque, ordens de serviço e equilíbrio de regiões.',
@@ -995,7 +1047,7 @@ window.CONTEUDO = {
       id: 'motor',
       titulo: 'Motor de Campanhas',
       resumo: 'Quem abordar em cada ação comercial, escolhido a partir da carteira e do histórico.',
-      areas: ['im', 'sql'], status: 'evolucao', quando: 'out 2026', visual: 'segmentos',
+      areas: ['im', 'sql'], status: 'evolucao', empresa: 'BAMAQ', quando: '2026', visual: 'segmentos',
       problema: 'Montar listas de clientes para ações das filiais era manual, e cada área usava um critério.',
       solucao: 'Base de cerca de 80 mil clientes com histórico de compras e carteira, gatilhos por negócio (máquinas, peças, pneus e serviços) e exportação no formato de importação do CRM. A execução continua no CRM.',
       aplicacao: 'Time de CRM e filiais geram campanhas com o mesmo critério.',
@@ -1018,7 +1070,7 @@ window.CONTEUDO = {
       id: 'precificador',
       titulo: 'Precificador de Máquinas',
       resumo: 'Preço de máquinas em estoque a partir do custo real de cada chassi.',
-      areas: ['bi', 'sql'], status: 'validacao', quando: 'out 2026', visual: 'cascata',
+      areas: ['bi', 'sql'], status: 'validacao', empresa: 'BAMAQ', quando: '2026', visual: 'cascata',
       problema: 'Gerentes calculavam o preço de máquinas em estoque com uma planilha de campanha, sem o custo real de cada chassi.',
       solucao: 'Custo por chassi direto do ERP (compra, frete, créditos de ICMS e valores agregados) e um motor de precificação que simula margem e preço.',
       aplicacao: 'Apoio à negociação de máquinas em estoque.',
@@ -1041,7 +1093,7 @@ window.CONTEUDO = {
       id: 'experience',
       titulo: 'Retorno de Eventos com Clientes',
       resumo: 'Compras 12 meses antes e depois de cada edição de um programa de relacionamento.',
-      areas: ['bi', 'im'], status: 'producao', quando: 'nov 2026', visual: 'antesdepois',
+      areas: ['bi', 'im'], status: 'producao', empresa: 'BAMAQ', quando: '2026', visual: 'antesdepois',
       problema: 'O retorno de um programa de relacionamento com clientes era medido em planilha e apresentado em um deck montado à mão.',
       solucao: 'Portal que compara compras de máquinas, peças, pneus e oficina antes e depois de cada edição, considerando empresas vinculadas ao cliente, com cadastro de turmas e galeria de fotos.',
       aplicacao: 'Diretoria e gestão acompanham o retorno do programa por edição e por cliente.',
@@ -1065,7 +1117,7 @@ window.CONTEUDO = {
       id: 'hub',
       titulo: 'Hub de Ferramentas',
       resumo: 'Uma porta de entrada para todas as ferramentas, com o mesmo padrão de publicação.',
-      areas: ['auto', 'ia'], status: 'producao', quando: 'out 2026', visual: 'grade',
+      areas: ['auto', 'ia'], status: 'producao', empresa: 'BAMAQ', quando: '2026', visual: 'grade',
       problema: 'As ferramentas viviam em links soltos e cada uma demorava para abrir.',
       solucao: 'Página inicial com catálogo em CSV (ferramenta nova é uma linha), controle de acesso por e-mail e um padrão comum: interface lida do Drive, dados compactados em cache e descompactados no navegador.',
       aplicacao: 'Todas as ferramentas internas publicadas a partir de 2026.',
@@ -1089,7 +1141,7 @@ window.CONTEUDO = {
       id: 'retail',
       titulo: 'Relatório Mensal para a Fábrica',
       resumo: 'A planilha de vendas que alimenta o dado de mercado do setor, preenchida por regra.',
-      areas: ['auto', 'sql'], status: 'producao', quando: 'out 2026', visual: 'fluxo',
+      areas: ['auto', 'sql'], status: 'producao', empresa: 'BAMAQ', quando: '2026', visual: 'fluxo',
       problema: 'Todo mês, a planilha de vendas para a fábrica era preenchida à mão, chassi por chassi.',
       solucao: 'Script que aplica a regra de saldo (vendas menos devoluções) e última venda, preenche as colunas a partir do ERP e do CRM, aprende a classificação de segmento com os envios anteriores e gera a visão anual com tabelas dinâmicas reais no Excel.',
       aplicacao: 'Rotina mensal da inteligência de mercado; o dado volta como participação de mercado.',
@@ -1112,7 +1164,7 @@ window.CONTEUDO = {
       id: 'performance',
       titulo: 'Performance de Vendedores',
       resumo: 'Protótipo de retorno e custo por vendedor para RH e diretoria.',
-      areas: ['bi'], status: 'prototipo', quando: 'nov 2026', visual: 'dispersao',
+      areas: ['bi'], status: 'prototipo', empresa: 'BAMAQ', quando: '2026', visual: 'dispersao',
       problema: 'RH e diretoria queriam ver entrega e custo de cada vendedor em um só lugar antes de investir na integração de dados de folha, frota e avaliação.',
       solucao: 'Protótipo navegável com 10 perfis fictícios, visão de time (entrega × retorno e matriz nove caixas), dossiê individual e dicionário de indicadores com a situação de cada fonte.',
       aplicacao: 'Base para a decisão de investimento; entregue para TI e RH continuarem.',
@@ -1129,10 +1181,10 @@ window.CONTEUDO = {
       aprendizados: ['Protótipo com dado fictício bem construído acelera a conversa sobre fontes.']
     },
     {
-      id: 'motion',
+      id: 'motion', empresa: 'Pessoal',
       titulo: 'Vídeos de Dados com IA',
       resumo: 'Lançamentos de ferramentas e documentários feitos por código, com voz de modelos locais.',
-      areas: ['ia'], status: 'estudo', quando: 'out 2026', visual: 'onda',
+      areas: ['ia'], status: 'estudo', quando: '2026', visual: 'onda',
       problema: 'Apresentar lançamentos de ferramentas e contar histórias com dados sem depender de produtora.',
       solucao: 'Vídeos renderizados por código (Remotion e three.js) com narração por modelos de voz locais, transcrição com Whisper e trilha sintetizada.',
       aplicacao: 'Vídeo de lançamento do mapa comercial e estudos de documentário.',
@@ -1153,7 +1205,7 @@ window.CONTEUDO = {
       aprendizados: ['Voz de IA precisa de revisão humana e de declaração ao publicar.']
     },
     {
-      id: 'fundamentos',
+      id: 'fundamentos', empresa: 'Pessoal',
       titulo: 'Fundamentos em Python, SQL e Power BI',
       resumo: 'Os estudos de 2022 que deram base ao trabalho atual.',
       areas: ['auto', 'sql', 'bi'], status: 'estudo', quando: '2022', visual: 'codigo',
@@ -1171,8 +1223,104 @@ window.CONTEUDO = {
       ],
       etapas: ['Python', 'SQL', 'Power BI'],
       aprendizados: ['Ferramenta só gera valor quando resolve uma pergunta concreta.']
+    },
+    {
+      id: 'mercado-bamaq', empresa: 'BAMAQ',
+      titulo: 'Inteligência de Mercado e Market Share',
+      resumo: 'Estudos de mercado, carteira e participação por região para orientar a estratégia comercial.',
+      areas: ['im', 'bi'], status: 'uso', quando: '2023 – hoje', visual: 'share',
+      problema: 'A área comercial precisava saber onde está o mercado, quanto dele a empresa ocupa em cada região e quais clientes priorizar.',
+      solucao: 'Estudos de mercado com foco na carteira de clientes, segmentação por personas, análises de market share por região e estado, e painéis em Power BI combinando dados internos e externos (Banco Central, IBGE e bases de prospecção).',
+      aplicacao: 'Relatórios analíticos para a equipe comercial e apoio à definição de estratégias de negócio.',
+      tech: ['Power BI', 'DAX', 'SQL', 'Excel', 'APIs públicas'],
+      resultados: [
+        'Market share acompanhado por região e por estado',
+        'Carteira de clientes segmentada por personas',
+        'Fontes externas (Banco Central, IBGE e bases de prospecção) integradas às análises internas'
+      ],
+      contexto: 'Base de todo o trabalho de inteligência de mercado na BAMAQ, anterior às ferramentas de 2026.',
+      objetivo: 'Dar à liderança comercial uma leitura contínua de mercado, concorrência e carteira.',
+      arquitetura: [
+        { etapa: 'Fontes', itens: ['CRM e faturamento', 'Dados de mercado do setor', 'Banco Central e IBGE', 'Bases de prospecção'] },
+        { etapa: 'Processamento', itens: ['SQL e Excel', 'Segmentação por personas', 'Market share por região'] },
+        { etapa: 'Entrega', itens: ['Painéis em Power BI', 'Relatórios para o comercial'] }
+      ],
+      etapas: ['Leitura da carteira e do mercado', 'Segmentação e market share', 'Painéis e relatórios recorrentes'],
+      aprendizados: ['Esse trabalho mostrou onde automatizar: as ferramentas de 2026 nasceram das análises que se repetiam todo mês.']
+    },
+    {
+      id: 'bi-apm', empresa: 'APM Brasil',
+      titulo: 'Cultura de Dados e BI na APM Brasil',
+      resumo: 'Gestão por indicadores e BI implantados nos setores de uma empresa de proteção veicular.',
+      areas: ['bi'], status: 'concluido', quando: '2020 – 2023', visual: 'kpis',
+      problema: 'Os setores acompanhavam resultados sem um conjunto padronizado de indicadores, e as decisões dependiam de levantamentos pontuais.',
+      solucao: 'Mapeamento dos processos críticos, implantação de gestão por indicadores de desempenho (KPIs), painéis em Power BI, desdobramento de metas e custos com os gestores e participação no planejamento estratégico dos setores.',
+      aplicacao: 'Análise de resultados e de cenários para orientar gestores e diretoria.',
+      tech: ['Power BI', 'DAX', 'Power Query', 'SQL', 'Excel'],
+      resultados: [
+        'Gestão por indicadores implantada nos processos críticos dos setores',
+        'Metas, indicadores, custos e prazos desdobrados com os gestores',
+        'Metodologias estruturadas de gestão no planejamento estratégico'
+      ],
+      contexto: 'Analista de Informação e BI na APM Brasil – Proteção Veicular, de 2020 a 2023.',
+      objetivo: 'Criar cultura de dados: decisões apoiadas em indicadores acompanhados por todos os setores.',
+      arquitetura: [
+        { etapa: 'Fontes', itens: ['Sistemas operacionais e financeiros', 'Planilhas dos setores'] },
+        { etapa: 'Processamento', itens: ['Modelagem e tratamento', 'Definição de KPIs por processo'] },
+        { etapa: 'Entrega', itens: ['Painéis em Power BI', 'Rituais de acompanhamento de metas'] }
+      ],
+      etapas: ['Diagnóstico dos processos críticos', 'Definição dos indicadores com cada gestor', 'Painéis e rotina de acompanhamento', 'Planejamento estratégico por setor'],
+      aprendizados: ['Indicador só muda comportamento quando tem dono, meta e um ritual de acompanhamento.']
+    },
+    {
+      id: 'bot-apm', empresa: 'APM Brasil',
+      titulo: 'Bot de Conversação na APM Brasil',
+      resumo: 'Atendimento automatizado por conversa para o relacionamento com associados.',
+      areas: ['ia', 'auto'], status: 'concluido', quando: '2020 – 2023', visual: 'chat',
+      /* CONFIRMAR com o Vitor: canal, tecnologia, volume e resultado do bot (ver PENDENCIAS.md) */
+      problema: 'Perguntas recorrentes de associados ocupavam o tempo da equipe de atendimento.',
+      solucao: 'Bot de conversação que responde às dúvidas mais frequentes e encaminha para uma pessoa o que precisa de atendimento humano.',
+      aplicacao: 'Relacionamento com associados de uma empresa de proteção veicular.',
+      tech: ['Chatbot', 'Automação de atendimento'],
+      resultados: ['Atendimento automatizado em produção na APM Brasil'],
+      contexto: 'Projeto desenvolvido no período como Analista de Informação e BI na APM Brasil.',
+      objetivo: 'Responder mais rápido às dúvidas comuns e liberar a equipe para os casos complexos.',
+      arquitetura: [
+        { etapa: 'Entrada', itens: ['Mensagem do associado'] },
+        { etapa: 'Processamento', itens: ['Fluxos de conversa', 'Regras de encaminhamento'] },
+        { etapa: 'Entrega', itens: ['Resposta automática', 'Transferência para atendente'] }
+      ],
+      etapas: ['Levantamento das dúvidas frequentes', 'Desenho dos fluxos', 'Implantação e ajustes'],
+      aprendizados: ['O bot funciona melhor quando sabe a hora de passar a conversa para uma pessoa.']
+    },
+    {
+      id: 'capacidade-almaviva', empresa: 'Almaviva',
+      titulo: 'Planejamento de Capacidade e Forecast',
+      resumo: 'Escalas, budget e rentabilidade de operações de teleatendimento guiados por forecast.',
+      areas: ['bi'], status: 'concluido', quando: '2016 – 2020', visual: 'forecast',
+      problema: 'Operações de teleatendimento precisam casar o número de pessoas com a demanda prevista, intervalo a intervalo, sem perder rentabilidade.',
+      solucao: 'Acompanhamento de KPIs e rentabilidade por modalidade de faturamento, estruturação de budget e ajuste das escalas ao forecast mensal, intraday e intra-hora, com orientação de capacidade aos gerentes da operação.',
+      aplicacao: 'Operações de teleatendimento com diferentes modalidades de faturamento.',
+      tech: ['Excel', 'Forecast', 'Budget', 'Gestão por KPIs'],
+      resultados: [
+        'Escalas ajustadas ao forecast mensal, intraday e intra-hora',
+        'Budget estruturado e rentabilidade acompanhada por modalidade de faturamento',
+        'Capacidade e estratégia orientadas junto aos gerentes da operação'
+      ],
+      contexto: 'Analista de Planejamento e Controle na Almaviva do Brasil, de 2016 a 2020.',
+      objetivo: 'Atender a demanda prevista com o menor custo possível.',
+      arquitetura: [
+        { etapa: 'Fontes', itens: ['Volume de chamadas', 'Escalas e absenteísmo', 'Contratos de faturamento'] },
+        { etapa: 'Processamento', itens: ['Forecast por intervalo', 'Dimensionamento'] },
+        { etapa: 'Entrega', itens: ['Escalas', 'Budget', 'Acompanhamento intraday'] }
+      ],
+      etapas: ['Forecast mensal', 'Dimensionamento e escalas', 'Gestão intraday e intra-hora', 'Budget e rentabilidade'],
+      aprendizados: ['Foi aqui que o hábito de decidir por indicador começou.']
     }
   ],
+
+  /* Ordem dos cards na grade (destaques sobem sozinhos para pares no topo). */
+  ordem: ['radar', 'flash', 'cockpit', 'territorio', 'mercado-bamaq', 'bi-apm', 'bot-apm', 'comissao', 'parque', 'capacidade-almaviva', 'motor', 'precificador', 'experience', 'hub', 'retail', 'performance', 'motion', 'fundamentos'],
 
   metodo: [
     { titulo: 'Entender o problema', texto: 'Quem decide, com que frequência e qual número muda a decisão.', exemplo: 'No Cockpit, a pergunta era: o que vai faturar este mês e quem se comprometeu?', caso: 'cockpit' },
@@ -1203,33 +1351,58 @@ window.CONTEUDO = {
     ]},
     { grupo: 'Dados geográficos e segurança', itens: [
       { nome: 'GeoJSON' }, { nome: 'Shapely' }, { nome: 'RLS' }, { nome: 'OAuth' }
+    ]},
+    { grupo: 'Planejamento e gestão', itens: [
+      { nome: 'Gestão por KPIs' }, { nome: 'Forecast' }, { nome: 'Budget' }, { nome: 'Scrum e Lean Six Sigma (noções)', semEvidencia: true }
     ]}
   ],
 
-  /* Trajetória: só marcos com data conhecida. Itens sem data ficam em PENDENCIAS.md. */
-  trajetoria: [
-    { quando: '2022', titulo: 'Primeiro portfólio de dados', texto: 'Estudos em Python, SQL Server e Power BI publicados no Google Sites.' },
-    { quando: 'Atual', titulo: 'Especialista em Inteligência de Mercado', texto: 'Inteligência de mercado e planejamento comercial em uma concessionária de máquinas pesadas.', atual: true },
-    { quando: 'set 2026', titulo: 'Planejamento comercial 2027', texto: 'Apresentações com infográficos para acompanhar as frentes definidas no workshop de planejamento.' },
-    { quando: 'out 2026', titulo: 'Primeiras ferramentas em produção', texto: 'Cockpit diário, mapa comercial, relatório para a fábrica, hub de ferramentas, precificador e motor de campanhas.' },
-    { quando: 'nov 2026', titulo: 'Escala e integração', texto: 'Radar de Empresas, comissão com evidências, flash financeiro de 29 filiais e integração com o Dynamics 365.' }
+  /* Carreira (do currículo). fim: null = atual. Ordem: mais recente primeiro. */
+  carreira: [
+    {
+      empresa: 'BAMAQ S.A.', cargo: 'Especialista em Inteligência de Mercado', inicio: 2023, fim: null,
+      setor: 'Concessionária de máquinas pesadas',
+      destaques: [
+        'Estudos de mercado, carteira e market share por região e estado',
+        'Painéis em Power BI com dados internos e externos (Banco Central, IBGE, bases de prospecção)',
+        'A partir de 2026, um hub com 12 ferramentas internas em produção: flash financeiro, cockpit de vendas, comissão, radar de empresas'
+      ],
+      casos: ['mercado-bamaq', 'flash', 'radar', 'cockpit']
+    },
+    {
+      empresa: 'APM Brasil – Proteção Veicular', cargo: 'Analista de Informação e BI', inicio: 2020, fim: 2023,
+      setor: 'Proteção veicular',
+      destaques: [
+        'Cultura de dados e gestão por indicadores (KPIs) nos processos críticos',
+        'Bot de conversação para o atendimento',
+        'Análise de resultados e cenários e apoio ao planejamento estratégico dos setores'
+      ],
+      casos: ['bi-apm', 'bot-apm']
+    },
+    {
+      empresa: 'Almaviva do Brasil', cargo: 'Analista de Planejamento e Controle', inicio: 2016, fim: 2020,
+      setor: 'Teleatendimento',
+      destaques: [
+        'KPIs e rentabilidade das operações por modalidade de faturamento',
+        'Budget, forecast e escalas ajustadas intraday e intra-hora',
+        'Orientação de capacidade e estratégia aos gerentes da operação'
+      ],
+      casos: ['capacidade-almaviva']
+    }
   ],
 
-  /* Datas de lançamento usadas no calendário da trajetória (AAAA-MM-DD). */
-  lancamentos: [
-    ['2026-10-02', 'Cockpit Diário de Vendas', 'cockpit'],
-    ['2026-10-05', 'Mapa Comercial publicado', 'territorio'],
-    ['2026-10-08', 'Relatório Mensal para a Fábrica', 'retail'],
-    ['2026-10-13', 'Mapa com visitas e análises', 'territorio'],
-    ['2026-10-28', 'Hub de Ferramentas e Precificador', 'hub'],
-    ['2026-10-29', 'Portal 360 do Cliente', 'hub'],
-    ['2026-10-30', 'Motor de Campanhas', 'motor'],
-    ['2026-11-03', 'Radar de Empresas', 'radar'],
-    ['2026-11-05', 'Comissão com Evidências', 'comissao'],
-    ['2026-11-09', 'Retorno de Eventos com Clientes', 'experience'],
-    ['2026-11-10', 'Parque de Máquinas e protótipo de Performance', 'parque'],
-    ['2026-11-11', 'Flash de Resultados', 'flash'],
-    ['2026-11-12', 'Consulta "quem atende"', 'territorio']
+  formacao: [
+    { curso: 'Ciência de Dados', instituicao: 'Anhanguera', inicio: 2021, fim: 2024 },
+    { curso: 'Engenharia Mecânica (bacharelado)', instituicao: 'Centro Universitário UNA', inicio: 2014, fim: 2020 }
+  ],
+
+  /* Marcos exibidos na linha de carreira. */
+  marcos: [
+    { ano: 2016, texto: 'Primeiro cargo em planejamento e controle', caso: 'capacidade-almaviva' },
+    { ano: 2020, texto: 'Entrada em BI e engenharia concluída', caso: 'bi-apm' },
+    { ano: 2022, texto: 'Primeiro portfólio de dados', caso: 'fundamentos' },
+    { ano: 2023, texto: 'Inteligência de mercado na BAMAQ', caso: 'mercado-bamaq' },
+    { ano: 2026, texto: 'Hub com 12 ferramentas em produção', caso: 'hub' }
   ]
 };
 
@@ -1245,6 +1418,7 @@ window.CONTEUDO = {
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (C.ordem) C.projetos.sort(function (a, b) { var ia = C.ordem.indexOf(a.id), ib = C.ordem.indexOf(b.id); return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib); });
   var byId = {}; C.projetos.forEach(function (p) { byId[p.id] = p; });
 
   /* ---------- Ícones (traço 2px, 24x24) ---------- */
@@ -1305,7 +1479,7 @@ window.CONTEUDO = {
     if (k.instagram) s.push('<a class="social" href="' + esc(k.instagram) + '" target="_blank" rel="noopener">' + ic('insta') + 'Instagram</a>');
     $('#h-socials').innerHTML = s.join('');
     $('#stats').innerHTML = C.destaques.map(function (d) {
-      return '<button class="stat" data-caso="' + esc(d.caso) + '"><span class="v">' + esc(d.valor) + '</span><span class="l">' + esc(d.rotulo) + '</span><span class="go">ver o caso →</span></button>';
+      return '<button class="stat" ' + (d.caso ? 'data-caso="' + esc(d.caso) + '"' : 'data-ancora="' + esc(d.ancora) + '"') + '><span class="v">' + esc(d.valor) + '</span><span class="l">' + esc(d.rotulo) + '</span><span class="go">' + (d.caso ? 'ver o caso' : 'ver a trajetória') + ' →</span></button>';
     }).join('');
   }
 
@@ -1567,6 +1741,34 @@ window.CONTEUDO = {
       s += '<line x1="368" x2="368" y1="90" y2="210" stroke="var(--fg)" stroke-width="1.5"/>' + T(32, 60, 'NARRAÇÃO · TRILHA · QUADROS', 'sv-t', ' font-size="11"');
       return s;
     },
+    share: function () {
+      var uf = [['MG', .42, .30], ['PA', .35, .22], ['GO', .28, .25], ['BA', .22, .18], ['TO', .31, .20], ['MT', .18, .16]];
+      var s = T(32, 40, 'MARKET SHARE POR ESTADO', 'sv-t', ' font-size="11"') + rect(380, 30, 10, 10, 'sv-v', 2) + T(396, 39, 'EMPRESA', 'sv-t') + '<line x1="470" x2="480" y1="35" y2="35" stroke="var(--idle)" stroke-width="2"/>' + T(486, 39, 'ANO ANTERIOR', 'sv-t');
+      uf.forEach(function (u, i) { var y = 66 + i * 44; s += T(32, y + 16, u[0], 'sv-tb', ' font-size="15"') + rect(80, y, 520, 22, 'sv-f', 4) + rect(80, y, 520 * u[1], 22, 'sv-v', 4) + '<line x1="' + (80 + 520 * u[2]) + '" x2="' + (80 + 520 * u[2]) + '" y1="' + (y - 4) + '" y2="' + (y + 26) + '" stroke="var(--idle)" stroke-width="2"/>' + T(80 + 520 * u[1] + 8, y + 15, Math.round(u[1] * 100) + '%', 'sv-t'); });
+      return s;
+    },
+    kpis: function () {
+      var k = [['Sinistralidade', '↓'], ['Inadimplência', '↓'], ['Novos associados', '↑'], ['Tempo de resposta', '↓'], ['Cancelamentos', '↓'], ['Custo por evento', '→']], R = rng(4), s = '';
+      k.forEach(function (x, i) {
+        var c = i % 3, r = Math.floor(i / 3), X = 32 + c * 196, Y = 36 + r * 152;
+        s += '<rect x="' + X + '" y="' + Y + '" width="180" height="136" rx="12" fill="var(--surface)" stroke="var(--line-2)"/>' + T(X + 14, Y + 26, x[0].toUpperCase(), 'sv-t') + T(X + 14, Y + 64, (20 + Math.round(R() * 70)) + (i === 2 ? '' : '%'), 'sv-tb', ' font-size="26"');
+        var pts = []; for (var j = 0; j < 8; j++) pts.push((X + 14 + j * 21) + ',' + (Y + 116 - R() * 28));
+        s += '<polyline points="' + pts.join(' ') + '" fill="none" stroke="var(--cyan)" stroke-width="2"/>' + T(X + 164, Y + 64, x[1], 'sv-tb', ' font-size="22" text-anchor="end"');
+      });
+      return s;
+    },
+    chat: function () {
+      var m = [[0, 'Olá! Como posso ajudar?'], [1, 'Quero a segunda via do boleto'], [0, 'Pronto, enviei para o seu e-mail.'], [1, 'E para acionar a assistência?'], [0, 'Vou te passar para um atendente.']];
+      var s = '<rect x="150" y="16" width="340" height="328" rx="20" fill="var(--surface)" stroke="var(--line-2)"/>' + T(174, 46, 'ATENDIMENTO', 'sv-t'), y = 64;
+      m.forEach(function (x) { var w = 20 + x[1].length * 6.6, X = x[0] ? 470 - w : 170; s += '<rect x="' + X + '" y="' + y + '" width="' + w + '" height="34" rx="14" class="' + (x[0] ? 'sv-v' : 'sv-f') + '"/>' + '<text x="' + (X + 10) + '" y="' + (y + 22) + '" font-family="var(--f-body)" font-size="12.5" style="fill:' + (x[0] ? '#fff' : 'var(--fg)') + '">' + esc(x[1]) + '</text>'; y += 52; });
+      return s;
+    },
+    forecast: function () {
+      var R = rng(6), f = [], r = [], s = T(32, 40, 'CHAMADAS POR INTERVALO · FORECAST × REALIZADO', 'sv-t', ' font-size="11"');
+      for (var i = 0; i < 28; i++) { var v = 60 + Math.sin((i - 4) / 27 * Math.PI) * 150; f.push((40 + i * 20.5) + ',' + (310 - v)); r.push((40 + i * 20.5) + ',' + (310 - v * (0.88 + R() * 0.24))); s += rect(34 + i * 20.5, 310 - v * 0.92, 12, v * 0.92, 'sv-f', 2); }
+      s += '<polyline points="' + f.join(' ') + '" fill="none" stroke="var(--violet)" stroke-width="2.5"/><polyline points="' + r.join(' ') + '" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-dasharray="5 4"/>';
+      return s + T(40, 340, '08h', 'sv-t') + T(320, 340, '14h', 'sv-t') + T(590, 340, '22h', 'sv-t') + rect(400, 52, 10, 10, 'sv-v', 2) + T(416, 61, 'FORECAST', 'sv-t') + rect(490, 52, 10, 10, 'sv-c', 2) + T(506, 61, 'REALIZADO', 'sv-t');
+    },
     codigo: function () {
       var L = [['import', 'pandas', ' as pd'], ['', 'df', ' = pd.read_sql(sql, conexao)'], ['', 'df', '["mes"] = df.data.dt.to_period("M")'], ['', 'resumo', ' = (df.groupby(["filial", "mes"])'], ['', '', '          .agg(total=("valor", "sum")))'], ['', 'resumo', '.to_excel("resumo.xlsx")']];
       var s = '<rect x="32" y="40" width="576" height="280" rx="12" fill="var(--surface)" stroke="var(--line-2)"/>';
@@ -1601,7 +1803,7 @@ window.CONTEUDO = {
     $('#grid').innerHTML = C.projetos.map(function (p) {
       return '<article class="card' + (p.destaque ? ' feat' : '') + '" data-id="' + p.id + '" data-areas="' + p.areas.join(' ') + '">' +
         '<div class="viz">' + visual(p) + '</div>' +
-        '<div class="body"><div class="meta">' + status(p.status) + '<span class="when">' + esc(p.quando) + '</span></div>' +
+        '<div class="body"><div class="meta">' + status(p.status) + '<span class="when">' + (p.empresa ? '<b>' + esc(p.empresa) + '</b> · ' : '') + esc(p.quando) + '</span></div>' +
         '<h3>' + esc(p.titulo) + '</h3><p class="resumo">' + esc(p.resumo) + '</p>' +
         (p.destaque ? '<div class="pb"><div><b>Problema</b>' + esc(p.problema) + '</div><div><b>Resultado</b>' + esc(p.resultados[0]) + '</div></div>' : '') +
         '<div class="tags">' + p.tech.slice(0, p.destaque ? 6 : 4).map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join('') + (p.tech.length > (p.destaque ? 6 : 4) ? '<span class="tag">+' + (p.tech.length - (p.destaque ? 6 : 4)) + '</span>' : '') + '</div>' +
@@ -1645,7 +1847,7 @@ window.CONTEUDO = {
       '<button class="icon-btn" data-nav="' + prox.id + '" aria-label="Próximo projeto: ' + esc(prox.titulo) + '">' + ic('next') + '</button>' +
       '<button class="icon-btn" id="caso-fechar" aria-label="Fechar o projeto">' + ic('close') + '</button></div></div>' +
       '<div class="case-body">' +
-      '<div class="case-hero"><div class="meta" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">' + status(p.status) + '<span class="mono" style="color:var(--faint)">' + esc(p.quando) + ' · ' + p.areas.map(function (a) { var f = C.filtros.filter(function (x) { return x.id === a; })[0]; return f ? esc(f.rotulo) : ''; }).join(' · ') + '</span></div>' +
+      '<div class="case-hero"><div class="meta" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">' + status(p.status) + '<span class="mono" style="color:var(--faint)">' + (p.empresa ? esc(p.empresa) + ' · ' : '') + esc(p.quando) + ' · ' + p.areas.map(function (a) { var f = C.filtros.filter(function (x) { return x.id === a; })[0]; return f ? esc(f.rotulo) : ''; }).join(' · ') + '</span></div>' +
       '<h2 id="caso-titulo">' + esc(p.titulo) + '</h2><p class="lead">' + esc(p.resumo) + '</p></div>' +
       '<div class="case-viz">' + visual(p) + '</div>' +
       '<div class="case-pb"><div><span class="k">Problema</span><p>' + esc(p.problema) + '</p></div><div><span class="k">Solução</span><p>' + esc(p.solucao) + '</p></div><div><span class="k">Aplicação</span><p>' + esc(p.aplicacao) + '</p></div></div>' +
@@ -1708,24 +1910,34 @@ window.CONTEUDO = {
   }
 
   /* ---------- Trajetória ---------- */
+  var ANO_HOJE = new Date().getFullYear();
+  function periodo(i, f) { return i + ' – ' + (f == null ? 'hoje' : f); }
   function trajetoria() {
-    $('#tl').innerHTML = C.trajetoria.map(function (t) { return '<li class="' + (t.atual ? 'atual' : '') + '"><span class="q">' + esc(t.quando) + '</span><b>' + esc(t.titulo) + '</b><p>' + esc(t.texto) + '</p></li>'; }).join('');
-    var mapa = {}; C.lancamentos.forEach(function (l) { (mapa[l[0]] = mapa[l[0]] || []).push(l); });
-    var meses = [[2026, 9, 'Outubro 2026'], [2026, 10, 'Novembro 2026']], dw = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
-    $('#cal').innerHTML = meses.map(function (m, mi) {
-      var first = new Date(m[0], m[1], 1).getDay(), dias = new Date(m[0], m[1] + 1, 0).getDate(), h = '<div class="cal-m"><h4>' + m[2] + '</h4><div class="cal-g">' + dw.map(function (d) { return '<span class="dw">' + d + '</span>'; }).join('');
-      for (var e = 0; e < first; e++) h += '<span class="cal-d empty"></span>';
-      for (var d = 1; d <= dias; d++) {
-        var k = m[0] + '-' + String(m[1] + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
-        h += mapa[k] ? '<button class="cal-d on' + (mi ? ' c2' : '') + '" data-dia="' + k + '" aria-label="' + d + ' de ' + m[2] + ': ' + esc(mapa[k].map(function (x) { return x[1]; }).join(', ')) + '">' + d + '</button>' : '<span class="cal-d">' + d + '</span>';
-      }
-      return h + '</div></div>';
+    $('#tl').innerHTML = C.carreira.map(function (c, i) {
+      return '<li class="' + (c.fim == null ? 'atual' : '') + '"><span class="q">' + periodo(c.inicio, c.fim) + ' · ' + ((c.fim == null ? ANO_HOJE : c.fim) - c.inicio || 1) + ' anos</span>' +
+        '<b>' + esc(c.cargo) + '</b><span class="emp">' + esc(c.empresa) + ' · ' + esc(c.setor) + '</span>' +
+        '<ul class="tl-pts">' + c.destaques.map(function (d) { return '<li>' + esc(d) + '</li>'; }).join('') + '</ul>' +
+        '<div class="ev">CASES · ' + c.casos.filter(function (k) { return byId[k]; }).map(function (k) { return '<button data-caso="' + k + '">' + esc(byId[k].titulo) + '</button>'; }).join('') + '</div></li>';
     }).join('');
-    $('#cal-sum').textContent = C.lancamentos.length + ' entregas em ' + Object.keys(mapa).length + ' dias';
-  }
-  function dia(k) {
-    var l = C.lancamentos.filter(function (x) { return x[0] === k; }), p = k.split('-');
-    $('#cal-tip').innerHTML = '<b>' + p[2] + '/' + p[1] + '/' + p[0] + '</b> · ' + l.map(function (x) { return esc(x[1]) + (byId[x[2]] ? ' <button class="linkbtn" style="display:inline-flex;font-size:14px" data-caso="' + x[2] + '">ver caso</button>' : ''); }).join(' · ');
+    $('#formacao').innerHTML = C.formacao.map(function (f) { return '<li><span class="q">' + periodo(f.inicio, f.fim) + '</span><b>' + esc(f.curso) + '</b><span class="emp">' + esc(f.instituicao) + '</span></li>'; }).join('');
+
+    // Linha de carreira: eixo de anos com faixas de formação e experiência
+    var A0 = Math.min.apply(null, C.formacao.map(function (f) { return f.inicio; }).concat(C.carreira.map(function (c) { return c.inicio; }))), A1 = ANO_HOJE + 1;
+    var pos = function (a) { return ((a - A0) / (A1 - A0) * 100).toFixed(2) + '%'; };
+    var larg = function (i, f) { return ((((f == null ? A1 : f + (f === i ? 1 : 0)) - i) / (A1 - A0)) * 100).toFixed(2) + '%'; };
+    var barra = function (cls, i, f, rot, tip) { return '<button class="bar ' + cls + '" style="left:' + pos(i) + ';width:' + larg(i, f) + '" data-linha="' + esc(tip) + '" title="' + esc(tip) + '"><span>' + esc(rot) + '</span></button>'; };
+    var anos = ''; for (var a = A0; a <= A1 - 1; a++) anos += '<span style="left:' + pos(a) + '">' + (a % 2 === 0 || a === A1 - 1 ? "'" + String(a).slice(2) : '') + '</span>';
+    var exp = C.carreira.slice().reverse().map(function (c, i) { return barra('exp e' + i, c.inicio, c.fim, c.empresa.split(' ')[0].replace('–', ''), c.cargo + ' · ' + c.empresa + ' · ' + periodo(c.inicio, c.fim)); }).join('');
+    var form = C.formacao.map(function (f) { return barra('form', f.inicio, f.fim, f.curso.split(' (')[0], f.curso + ' · ' + f.instituicao + ' · ' + periodo(f.inicio, f.fim)); }).join('');
+    var marcos = C.marcos.map(function (m) { return '<button class="mk" style="left:calc(' + pos(m.ano) + ' + ' + (100 / (A1 - A0) / 2).toFixed(2) + '%)" data-marco="' + m.ano + '" aria-label="' + m.ano + ': ' + esc(m.texto) + '"></button>'; }).join('');
+    var anosExp = ANO_HOJE - Math.min.apply(null, C.carreira.map(function (c) { return c.inicio; }));
+    $('#linha').innerHTML =
+      '<div class="lk"><div><b>' + anosExp + '</b><span>anos de experiência</span></div><div><b>' + C.carreira.length + '</b><span>empresas</span></div><div><b>' + C.formacao.length + '</b><span>formações</span></div><div><b>' + C.projetos.length + '</b><span>cases neste site</span></div></div>' +
+      '<div class="lane"><span class="ln">Experiência</span><div class="track">' + exp + '</div></div>' +
+      '<div class="lane"><span class="ln">Formação</span><div class="track">' + form + '</div></div>' +
+      '<div class="lane"><span class="ln">Marcos</span><div class="track marcos">' + marcos + '</div></div>' +
+      '<div class="axis">' + anos + '</div>';
+    $('#linha-tip').innerHTML = '<p class="lt-sel" id="lt-sel">Toque em uma barra para ver o período.</p><ol class="marcos-lista">' + C.marcos.map(function (m) { return '<li data-ano="' + m.ano + '"><span class="q">' + m.ano + '</span><span>' + esc(m.texto) + '</span>' + (byId[m.caso] ? '<button class="linkbtn" data-caso="' + m.caso + '">ver caso</button>' : '') + '</li>'; }).join('') + '</ol>';
   }
 
   /* ---------- Contato ---------- */
@@ -1763,7 +1975,9 @@ window.CONTEUDO = {
       t = e.target.closest('#limpar-tech'); if (t) { techFiltro = ''; aplicarFiltro(); return; }
       t = e.target.closest('.tech'); if (t && !t.disabled) { techFiltro = t.dataset.tech; filtro = 'todos'; aplicarFiltro(); $('#projetos').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); return; }
       t = e.target.closest('[data-step]'); if (t) { passo = +t.dataset.step; metodo(); var b = $('[data-step="' + passo + '"]'); if (b) b.focus({ preventScroll: true }); return; }
-      t = e.target.closest('[data-dia]'); if (t) { dia(t.dataset.dia); return; }
+      t = e.target.closest('[data-linha]'); if (t) { $$('#linha .bar').forEach(function (b) { b.classList.toggle('on', b === t); }); $('#lt-sel').textContent = t.dataset.linha; return; }
+      t = e.target.closest('[data-marco]'); if (t) { $$('.marcos-lista li').forEach(function (li) { li.classList.toggle('on', li.dataset.ano === t.dataset.marco); }); return; }
+      t = e.target.closest('[data-ancora]'); if (t) { var alvo = document.getElementById(t.dataset.ancora); if (alvo) alvo.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); return; }
       t = e.target.closest('[data-copy]'); if (t) { copiar(t.dataset.copy, t); return; }
       if (e.target === $('#caso')) fecharCaso();
     });
